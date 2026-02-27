@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo - Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">ToDo</div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Create Account</h2>
+            <form action="/signup" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn-main">Register</button>
+            </form>
+            <p style="margin-top: 20px; color: #777;">
+                Already have an account? 
+                <a href="/login" class="btn-secondary-sm">Login</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

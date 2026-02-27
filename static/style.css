@@ -1,0 +1,140 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #88e34b 0%, #52bdd2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(41, 3, 228);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.nav-logo {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Authentication (Centered Box) */
+.auth-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.auth-box h2 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Form Styling */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+/* Buttons */
+.btn-main {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #667eea;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary-sm {
+    display: inline-block;
+    background: #f1f1f1;
+    color: #555;
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.btn-secondary-sm:hover {
+    background: #e2e2e2;
+    transform: scale(1.05);
+}
+
+.logout-btn {
+    background: #ff4b2b;
+    color: white;
+    padding: 8px 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Dashboard Content */
+.dashboard-container {
+    max-width: 900px;
+    margin: 40px auto;
+    width: 90%;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.task-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">ToDo</div>
+        <div>
+            <span style="margin-right: 20px; font-weight: 300;">Welcome, <b>{{ user.username }}</b></span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <div class="card">
+            <h3 style="margin-top:0; color: #333;">Create or Assign a Task</h3>
+            <form action="/add_task" method="POST" style="display: flex; gap: 15px; align-items: center;">
+                <input type="text" name="content" placeholder="What needs to be done?" required style="flex: 3;">
+                
+                <select name="assignee_id" style="flex: 1;">
+                    <option value="none">Assign Later (None)</option>
+                    {% for u in other_users %}
+                        <option value="{{ u.id }}">{{ u.username }}</option>
+                    {% endfor %}
+                </select>
+                
+                <button type="submit" class="btn-main" style="width: auto; padding: 14px 30px;">Create</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top:0; color: #764ba2;">Tasks for Me</h3>
+            {% if my_tasks %}
+                {% for task in my_tasks %}
+                    <div class="task-item" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>• {{ task.content }}</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #6c757d; font-size: 0.75em;">From: <b>{{ task.creator.username }}</b></span>
+                            <span style="color: #667eea; font-size: 0.75em; font-weight: bold;">INCOMING</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #999; text-align: center; padding: 20px;">You have no tasks assigned to you right now.</p>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top:0; color: #667eea;">Tasks I've Created</h3>
+            {% if created_tasks %}
+                {% for task in created_tasks %}
+                    <div class="task-item" style="display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <span style="font-weight: 600;">→ {{ task.content }}</span>
+                            <span style="background: #e8edff; padding: 4px 12px; border-radius: 15px; font-size: 0.75em; color: #555;">
+                                Current: <b>{{ task.assignee.username if task.assignee else "Unassigned" }}</b>
+                            </span>
+                        </div>
+
+                        <form action="{{ url_for('reassign_task', task_id=task.id) }}" method="POST" style="display: flex; gap: 10px; align-items: center;">
+                            <label style="font-size: 0.75em; color: #888;">Move to:</label>
+                            <select name="new_assignee_id" style="margin: 0; padding: 5px; font-size: 0.8em; flex: 1;">
+                                <option value="none">Unassign (None)</option>
+                                {% for u in other_users %}
+                                    <option value="{{ u.id }}" {% if task.assigned_to == u.id %}selected{% endif %}>{{ u.username }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn-secondary-sm" style="margin: 0;">Update</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #999; text-align: center; padding: 20px;">You haven't created any tasks yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>
